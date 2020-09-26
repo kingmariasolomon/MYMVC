@@ -1,0 +1,25 @@
+<?php
+use Core\FH;
+?>
+<?php $this->start('head'); ?>
+<?php $this->end(); ?>
+<?php $this->start('body'); ?>
+<div class="col-md-6 col-md-offset-3 well">
+    <h3 class="text-center">Log In</h3>
+    <form role="form" class="form" action="<?=PROOT?>register/login" method="post">
+        <?= FH::csrfInput();?>
+        <?= FH::displayErrors($this->displayErrors);?>
+        
+        <?= FH::inputBlock('text', 'Username', 'username',$this->login->username, ['class'=>'form-control'], ['class'=>'form-group']);?>
+
+        <?= FH::inputBlock('password', 'Password', 'password','', ['class'=>'form-control'], ['class'=>'form-group']);?>
+        
+        <?= FH::checkboxBlock('Remember Me', 'remember_me', $this->login->getRememberMeChecked(), [], ['class'=>'form-group']);?>
+
+        <?= FH::submitBlock('Login', ['class'=>'btn btn-primary btn-large'], ['class'=>'form-group']);?>
+        <div class="text-right">
+            <a href="<?=PROOT?>register/register" class="text-primary">Register</a>
+        </div>
+    </form>
+</div>
+<?php $this->end(); ?>
